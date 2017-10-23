@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>Magic Conch Shell</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script>
+			var yes = new Audio("res/yes.ogg");
+			var no = new Audio("res/no.ogg");
+			var lastMod = 0;
+			var waitTime = 3000;
+			function sleep (time) {
+				return new Promise((resolve) => setTimeout(resolve, time));
+			}
+			function playAnswer() {
+				var answer = (Math.random() >= 0.5) ? "Yes" : "No";
+				var audio = (answer === "Yes") ? yes : no;
+				audio.play();
+				answerText.innerHTML = answer
+				lastMod = new Date().getTime();
+				sleep(waitTime).then(() => {
+					var time = new Date().getTime();
+					if (time - lastMod >= waitTime) {
+						answerText.innerHTML = ""
+						lastMod = time;
+					}
+				});
+			}
+		</script>
+	</head>
+	<body>
+		<h1><br>Ask the Magic Conch Shell</h1>
+		<div id="conchShell">
+			<a href="#" onclick="playAnswer();">
+				<div id="conchShellImg"></div>
+			</a>
+		</div>
+		<h1 id="answerText"></h1>
+	</body>
+</html>
