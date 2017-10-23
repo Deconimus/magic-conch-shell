@@ -19,6 +19,10 @@ body {
 	background-image: url("res/conch_shell_glow.png");
 }
 
+#conchShellImg:active {
+	background-image: url("res/conch_shell_glow.png");
+}
+
 h1 {
 	text-align: center;
 	font-family: Arial;
